@@ -1,0 +1,700 @@
+{
+  "Vegetables": [
+    {
+      "id": 1,
+      "name": "Vegetable",
+      "min": 0.41,
+      "max": 0.80
+    }
+  ],
+  "Flowers": [
+    {
+      "id": 2,
+      "name": "Agave",
+      "min": 0.00,
+      "max": 0.40
+    },
+    {
+      "id": 3,
+      "name": "Aster",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 4,
+      "name": "Astilbe",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 5,
+      "name": "Big Blue Stem",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 6,
+      "name": "Bleeding Heart",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 7,
+      "name": "Butterfly Weed",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 8,
+      "name": "Cactus",
+      "min": 0.00,
+      "max": 0.40
+    },
+    {
+      "id": 9,
+      "name": "Catmint",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 10,
+      "name": "Christmas Fern",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 11,
+      "name": "Coneflower",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 12,
+      "name": "Daffodil",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 13,
+      "name": "Dalia",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 14,
+      "name": "Daylilly",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 15,
+      "name": "Gaillardia",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 16,
+      "name": "Heaths",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 17,
+      "name": "Hellebore",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 18,
+      "name": "Hosta",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 19,
+      "name": "Hyssop",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 20,
+      "name": "Iris",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 21,
+      "name": "Ironweed",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 22,
+      "name": "Jack in Pulpit",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 23,
+      "name": "Joe-Pye Weed",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 24,
+      "name": "Lavender",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 25,
+      "name": "Lemon Balm",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 26,
+      "name": "Lily",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 27,
+      "name": "Lobellia",
+      "min": 0.41,
+      "max": 0.80
+    },
+    {
+      "id": 28,
+      "name": "Lupine",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 29,
+      "name": "Marigold",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 30,
+      "name": "Marsh Marigold",
+      "min": 0.61,
+      "max": 0.80
+    },
+    {
+      "id": 31,
+      "name": "May Apple",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 32,
+      "name": "Meadow Rue",
+      "min": 0.41,
+      "max": 0.80
+    },
+    {
+      "id": 33,
+      "name": "Monarda",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 34,
+      "name": "Ornamental Grasses",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 35,
+      "name": "Penstemon",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 36,
+      "name": "Peony",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 37,
+      "name": "Petunia",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 38,
+      "name": "Poppy",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 39,
+      "name": "Purple Coneflower",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 40,
+      "name": "Queen of the Prairie",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 41,
+      "name": "Red Milkweed",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 42,
+      "name": "Sedges",
+      "min": 0.21,
+      "max": 0.80
+    },
+    {
+      "id": 43,
+      "name": "Sedum",
+      "min": 0.00,
+      "max": 0.40
+    },
+    {
+      "id": 44,
+      "name": "Pansy",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 45,
+      "name": "Tulip",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 46,
+      "name": "Violet",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 47,
+      "name": "Yarrow",
+      "min": 0.00,
+      "max": 0.40
+    },
+    {
+      "id": 48,
+      "name": "Yucca",
+      "min": 0.00,
+      "max": 0.40
+    },
+    {
+      "id": 49,
+      "name": "Zinnia",
+      "min": 0.21,
+      "max": 0.40
+    }
+  ],
+  "Trees and Shrubs": [
+    {
+      "id": 50,
+      "name": "Alpine Currant",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 51,
+      "name": "American Filbert",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 52,
+      "name": "American Holly",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 53,
+      "name": "Amur Privet",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 54,
+      "name": "Azborvitae",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 55,
+      "name": "Azalea",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 56,
+      "name": "Bald Cypress",
+      "min": 0.21,
+      "max": 0.80
+    },
+    {
+      "id": 57,
+      "name": "Barberry",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 58,
+      "name": "Bayberry",
+      "min": 0.00,
+      "max": 0.80
+    },
+    {
+      "id": 59,
+      "name": "Birch",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 60,
+      "name": "Black Tupelo",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 61,
+      "name": "Chinese Juniper",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 62,
+      "name": "Clematis",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 63,
+      "name": "Common Boxwood",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 64,
+      "name": "Common Elderberry",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 65,
+      "name": "Common Lilac",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 66,
+      "name": "Crab Apple",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 67,
+      "name": "Crape Myrtle",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 68,
+      "name": "Drawn Redwood",
+      "min": 0.41,
+      "max": 0.80
+    },
+    {
+      "id": 69,
+      "name": "Dogwood",
+      "min": 0.41,
+      "max": 0.80
+    },
+    {
+      "id": 70,
+      "name": "Eastern Red Cedar",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 71,
+      "name": "Elderberry",
+      "min": 0.21,
+      "max": 0.80
+    },
+    {
+      "id": 72,
+      "name": "Elm",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 73,
+      "name": "Frazier Fir",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 74,
+      "name": "Gardenia",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 75,
+      "name": "Ginkgo",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 76,
+      "name": "Hawthorn",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 77,
+      "name": "Holly",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 78,
+      "name": "Honey Locust",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 79,
+      "name": "Horse Chestnut",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 80,
+      "name": "Hydrangea",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 81,
+      "name": "Juniper",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 82,
+      "name": "Lilac",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 83,
+      "name": "Maple",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 84,
+      "name": "Mockorange",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 85,
+      "name": "New Jersey Tea",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 86,
+      "name": "Oaks",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 87,
+      "name": "Ohio Buckeye",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 88,
+      "name": "Potentilla",
+      "min": 0.00,
+      "max": 0.40
+    },
+    {
+      "id": 89,
+      "name": "Red Cedar",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 90,
+      "name": "Red Twig Dogwood",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 91,
+      "name": "Rhodendron",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 92,
+      "name": "Roses",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 93,
+      "name": "Rugosa Rose",
+      "min": 0.00,
+      "max": 0.40
+    },
+    {
+      "id": 94,
+      "name": "Saucer Magnolia",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 95,
+      "name": "Serviceberry",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 96,
+      "name": "Silver Maple",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 97,
+      "name": "Spirea",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 98,
+      "name": "Spruce",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 99,
+      "name": "Sugar Maple",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 100,
+      "name": "Swamp White Oak",
+      "min": 0.61,
+      "max": 0.80
+    },
+    {
+      "id": 101,
+      "name": "Sweetshrub",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 102,
+      "name": "Tamarack",
+      "min": 0.41,
+      "max": 0.80
+    },
+    {
+      "id": 103,
+      "name": "White Fir",
+      "min": 0.21,
+      "max": 0.40
+    },
+    {
+      "id": 104,
+      "name": "White Pine",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 105,
+      "name": "Willow",
+      "min": 0.41,
+      "max": 0.80
+    }
+  ],
+  "Fruits": [
+    {
+      "id": 106,
+      "name": "Apple",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 107,
+      "name": "Grapes",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 108,
+      "name": "Fig",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 109,
+      "name": "Peach",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 110,
+      "name": "Pear",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 111,
+      "name": "Raspberry",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 112,
+      "name": "Strawberry",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 113,
+      "name": "Blackberry",
+      "min": 0.21,
+      "max": 0.60
+    },
+    {
+      "id": 114,
+      "name": "Blueberry",
+      "min": 0.41,
+      "max": 0.60
+    },
+    {
+      "id": 115,
+      "name": "Cranberry",
+      "min": 0.61,
+      "max": 0.80
+    }
+  ]
+}
