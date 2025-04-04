@@ -1,29 +1,28 @@
-SAD: str = 'sad'
-NEUTRAL: str = 'neutral'
-HAPPY: str = 'happy'
+# Constants for plant happiness levels
+HAPPY = "HAPPY"
+NEUTRAL = "NEUTRAL"
+SAD = "SAD"
 
 
 class Plant:
-    id: int
-    name: str
-    min_moisture: float
-    max_moisture: float
-    category: str
-
-    def __init__(self, plant_id: int, name: str, min_moisture: float, max_moisture: float, category: str) -> None:
-        self.id = plant_id
+    def __init__(self, id, name, min, max, category):
+        self.id = id
         self.name = name
-        self.min_moisture = min_moisture
-        self.max_moisture = max_moisture
+        self.min = min  # Minimum soil moisture
+        self.max = max  # Maximum soil moisture
         self.category = category
 
-    def get_happy_level(self, soil_moisture: float) -> str:
+    def get_happy_level(self, soil_moisture):
         """
-        Returns the happy level of the plant based on the soil moisture.
+        Determine plant happiness based on soil moisture level
         """
-        if soil_moisture < self.min_moisture or soil_moisture > self.max_moisture:
+        if soil_moisture < self.min or soil_moisture > self.max:
             return SAD
-        elif soil_moisture <= self.min_moisture + 0.05 or soil_moisture >= self.max_moisture - 0.05:
+
+        # Neutral zone is close to the edges of the acceptable range
+        buffer = 0.1
+        if (soil_moisture < self.min + buffer) or (soil_moisture > self.max - buffer):
             return NEUTRAL
-        else:
-            return HAPPY
+
+        return HAPPY
+

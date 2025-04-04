@@ -1,33 +1,43 @@
-import random
 import json
+import random
 from tkinter import *
 
 from PIL import Image, ImageTk
+from PIL.ImageFile import ImageFile
 
 from plant import *
 
-clicked: bool = True
+# Global variables
+clicked = True
+plants = []
+plant = Plant(0, 'None', 0, 0, 'None')
+soil_moisture = random.uniform(0.0, 0.80)
 
-plants: list[Plant] = []
-plant: Plant = Plant(0, 'None', 0, 0, 'None')
-soil_moisture: float = random.uniform(0.0, 0.80)
+# Store image references to prevent garbage collection
+image_references = {}
 
 
 def create_status_bar(root: Tk) -> None:
-    global plant
+    global plant, image_references
 
     status_bar: Frame = Frame(root)
     status_bar.pack(side=TOP, fill=X)
 
-    status_bar_plant_img: PhotoImage = ImageTk.PhotoImage(Image.open(r'images/leaf.gif').resize((20, 20)))
-    panel = Label(status_bar, image=status_bar_plant_img)
+    # Keep reference to prevent garbage collection
+    leaf_img = ImageTk.PhotoImage(Image.open('images/leaf.gif').resize((20, 20)))
+    image_references['leaf'] = leaf_img
+
+    panel: Label = Label(status_bar, image=leaf_img)
     panel.pack(side=LEFT, fill=BOTH, expand=NO)
 
     status_bar_plant: Label = Label(status_bar, text=plant.name, font=('Arial', 9))
     status_bar_plant.pack(side=LEFT, fill=X)
 
-    status_bar_moisture_img: PhotoImage = ImageTk.PhotoImage(Image.open(r'images/drop.gif').resize((20, 20)))
-    panel = Label(status_bar, image=status_bar_moisture_img)
+    # Keep reference to prevent garbage collection
+    drop_img: PhotoImage = ImageTk.PhotoImage(Image.open('images/drop.gif').resize((20, 20)))
+    image_references['drop'] = drop_img
+
+    panel: Label = Label(status_bar, image=drop_img)
     panel.pack(side=RIGHT, fill=BOTH, expand=NO)
 
     status_bar_moisture: Label = Label(status_bar, text=f'{soil_moisture * 100:.2f}%', font=('Arial', 9))
@@ -35,63 +45,116 @@ def create_status_bar(root: Tk) -> None:
 
 
 def show_select_screen(root: Tk) -> None:
-    global plants
+    global plants, image_references
 
-    categories: dict[str, Canvas] = {}
+    categories: dict[str, Frame] = {}
 
     for p in plants:
         if p.category not in categories:
             Label(root, text=p.category, font=('Arial', 20), bg='white').pack(side=TOP, fill=X)
-            sb = Scrollbar(root, orient=HORIZONTAL)
+            sb: Scrollbar = Scrollbar(root, orient=HORIZONTAL)
             sb.pack(side=TOP, fill=X)
-            categories[p.category] = Canvas(root, xscrollcommand=sb.set)
-            categories[p.category].pack(side=TOP, fill=X)
-            sb.config(command=categories[p.category].xview)
+            canvas: Canvas = Canvas(root, xscrollcommand=sb.set)
+            canvas.pack(side=TOP, fill=X)
+            sb.config(command=canvas.xview)
 
-        photo = PhotoImage(file=r"images/apple.gif")
-        photo_image = photo.subsample(3, 3)
-        Button(categories[p.category], text=p.name, image=photo_image, compound=TOP).pack(side=LEFT)
+            # Create a frame inside the canvas to hold the buttons
+            frame: Frame = Frame(canvas)
+            canvas.create_window((0, 0), window=frame, anchor=NW)
+
+            categories[p.category] = frame
+
+        # Open image and resize it using PIL before converting to PhotoImage
+        original_img: ImageFile = Image.open("images/apple.gif")
+        resized_img: ImageFile = original_img.resize((original_img.width // 3, original_img.height // 3))
+        photo_image: PhotoImage = ImageTk.PhotoImage(resized_img)
+
+        # Store reference with unique key
+        image_key: str = f"plant_{p.id}"
+        image_references[image_key] = photo_image
+
+        # Create button with plant selection callback
+        def make_callback(plant_obj: Plant) -> callable:
+            return lambda: select_plant(root, plant_obj)
+
+        Button(categories[p.category], text=p.name, image=photo_image, compound=TOP, command=make_callback(p)).pack(
+            side=LEFT)
+
+    # Update canvas scrollregion after adding all buttons
+    for category, frame in categories.items():
+        frame.update_idletasks()
+        canvas = frame.master
+        canvas.config(scrollregion=canvas.bbox("all"))
+
+
+def select_plant(root: Tk, selected_plant: Plant) -> None:
+    global plant, clicked
+    plant = selected_plant
+    clicked = False
+
+    # Clear the current window content
+    for widget in root.winfo_children():
+        if widget.winfo_class() != 'Frame' or widget != root.winfo_children()[0]:  # Keep status bar
+            widget.destroy()
+
+    show_plant_info(root)
 
 
 def show_plant_info(root: Tk) -> None:
-    global plant
+    global plant, soil_moisture, image_references
 
-    if plant is None:
+    if plant is None or plant.name == 'None':
         show_select_screen(root)
         return
 
     main_frame: Frame = Frame(root, bg='white')
     main_frame.pack(side=TOP, fill=BOTH, expand=YES)
-    # main_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
-
-    image_file: str
-    text_color: str
 
     happy_level: str = plant.get_happy_level(soil_moisture)
-    if happy_level == SAD:
-        image_file = r'images/sad.gif'
-        text_color = 'red'
-    elif happy_level == NEUTRAL:
-        image_file = r'images/neutral.gif'
-        text_color = 'orange'
-    else:
-        image_file = r'images/happy.gif'
-        text_color = 'green'
 
-    photo: PhotoImage = PhotoImage(file=image_file)
-    panel = Label(main_frame, image=photo, bg='white')
+    if happy_level == SAD:
+        image_file: str = 'images/sad.gif'
+        text_color: str = 'red'
+    elif happy_level == NEUTRAL:
+        image_file: str = 'images/neutral.gif'
+        text_color: str = 'orange'
+    else:
+        image_file: str = 'images/happy.gif'
+        text_color: str = 'green'
+
+    # Keep reference to prevent garbage collection
+    photo: PhotoImage = ImageTk.PhotoImage(file=image_file)
+    image_references['mood'] = photo
+
+    panel: Label = Label(main_frame, image=photo, bg='white')
     panel.pack(side=TOP)
 
     label: Label = Label(main_frame, text=f'{soil_moisture * 100:.2f}%', font=('Arial', 20), fg=text_color, bg='white')
     label.pack(side=TOP, pady=10)
 
+    # Add a button to go back to plant selection
+    back_button: Button = Button(main_frame, text="Select Different Plant", command=lambda: back_to_selection(root))
+    back_button.pack(side=TOP, pady=20)
+
+
+def back_to_selection(root: Tk) -> None:
+    global clicked
+    clicked = True
+
+    # Clear the current window content except status bar
+    for widget in root.winfo_children():
+        if widget.winfo_class() != 'Frame' or widget != root.winfo_children()[0]:  # Keep status bar
+            widget.destroy()
+
+    show_select_screen(root)
+
 
 def read_plant_data() -> None:
-    data: dict[str, list[dict[str, str | int | float]]]
+    global plants
     with open('plants.json') as f:
         data = json.load(f)
 
-    global plants
+    plants = []  # Clear the list before adding new plants
     for k, v in data.items():
         for p in v:
             plants.append(Plant(p['id'], p['name'], p['min'], p['max'], k))
@@ -102,12 +165,20 @@ def main() -> None:
 
     root: Tk = Tk()
     root.attributes('-fullscreen', True)
+    root.title("Plant Monitor")
+
+    # Set white background
+    root.configure(bg='white')
 
     create_status_bar(root)
+
     if clicked:
         show_select_screen(root)
     else:
         show_plant_info(root)
+
+    # Add escape key to exit fullscreen
+    root.bind('<Escape>', lambda e: root.destroy())
 
     root.mainloop()
 
