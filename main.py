@@ -24,7 +24,7 @@ def create_status_bar(root: Tk) -> None:
     status_bar.pack(side=TOP, fill=X)
 
     # Keep reference to prevent garbage collection
-    leaf_img = ImageTk.PhotoImage(Image.open('images/leaf.gif').resize((20, 20)))
+    leaf_img: PhotoImage = ImageTk.PhotoImage(Image.open('images/leaf.gif').resize((20, 20)))
     image_references['leaf'] = leaf_img
 
     panel: Label = Label(status_bar, image=leaf_img)
@@ -46,6 +46,8 @@ def create_status_bar(root: Tk) -> None:
 
 def show_select_screen(root: Tk) -> None:
     global plants, image_references
+
+    create_status_bar(root)
 
     categories: dict[str, Frame] = {}
 
@@ -80,7 +82,7 @@ def show_select_screen(root: Tk) -> None:
         Button(categories[p.category], text=p.name, image=photo_image, compound=TOP, command=make_callback(p)).pack(
             side=LEFT)
 
-    # Update canvas scrollregion after adding all buttons
+    # Update canvas scroll region after adding all buttons
     for category, frame in categories.items():
         frame.update_idletasks()
         canvas = frame.master
@@ -94,14 +96,15 @@ def select_plant(root: Tk, selected_plant: Plant) -> None:
 
     # Clear the current window content
     for widget in root.winfo_children():
-        if widget.winfo_class() != 'Frame' or widget != root.winfo_children()[0]:  # Keep status bar
-            widget.destroy()
+        widget.destroy()
 
     show_plant_info(root)
 
 
 def show_plant_info(root: Tk) -> None:
     global plant, soil_moisture, image_references
+
+    create_status_bar(root)
 
     if plant is None or plant.name == 'None':
         show_select_screen(root)
@@ -141,10 +144,9 @@ def back_to_selection(root: Tk) -> None:
     global clicked
     clicked = True
 
-    # Clear the current window content except status bar
+    # Clear the current window content
     for widget in root.winfo_children():
-        if widget.winfo_class() != 'Frame' or widget != root.winfo_children()[0]:  # Keep status bar
-            widget.destroy()
+        widget.destroy()
 
     show_select_screen(root)
 
@@ -169,8 +171,6 @@ def main() -> None:
 
     # Set white background
     root.configure(bg='white')
-
-    create_status_bar(root)
 
     if clicked:
         show_select_screen(root)
