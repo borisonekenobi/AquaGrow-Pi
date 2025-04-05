@@ -41,22 +41,22 @@ def create_status_bar(root: Tk) -> None:
     panel.pack(side=LEFT, fill=BOTH, expand=NO, padx=10)
 
     status_bar_plant: Label = Label(status_bar, text=plant.name, font=('Arial', 9))
-    status_bar_plant.pack(side=LEFT, fill=X)
+    status_bar_plant.pack(side=LEFT, fill=X, expand=NO)
 
     if plant is not None and plant.name != 'None':
         # Keep reference to prevent garbage collection
-        ideal: Label = Label(status_bar, text=f'Ideal: {plant.min + 5} - {plant.max - 5}', font=('Arial', 9))
-        ideal.pack(side=LEFT, fill=X, expand=YES, padx=10)
+        ideal: Label = Label(status_bar, text=f'Ideal: {plant.min + 5}% - {plant.max - 5}%', font=('Arial', 9))
+        ideal.pack(side=LEFT, fill=X, expand=YES)
 
     # Keep reference to prevent garbage collection
     drop_img: PhotoImage = ImageTk.PhotoImage(Image.open('images/drop.gif').resize((20, 20)))
     image_references['drop'] = drop_img
 
     panel: Label = Label(status_bar, image=drop_img)
-    panel.pack(side=RIGHT, fill=BOTH, expand=NO)
+    panel.pack(side=RIGHT, fill=BOTH, expand=NO, padx=10)
 
     status_bar_moisture: Label = Label(status_bar, textvariable=soil_moisture, font=('Arial', 9))
-    status_bar_moisture.pack(side=RIGHT, fill=X, padx=10)
+    status_bar_moisture.pack(side=RIGHT, fill=X, expand=NO)
 
 
 def show_select_screen(root: Tk) -> None:
