@@ -10,8 +10,8 @@ from plant import *
 # Global variables
 clicked = True
 plants = []
-plant = Plant(0, 'None', 0, 0, 'None')
-soil_moisture = random.uniform(0.0, 0.80)
+plant = Plant('None', 'images/no_image.png', 0, 0, 'None')
+soil_moisture = random.uniform(0, 80)
 
 # Store image references to prevent garbage collection
 image_references = {}
@@ -40,7 +40,7 @@ def create_status_bar(root: Tk) -> None:
     panel: Label = Label(status_bar, image=drop_img)
     panel.pack(side=RIGHT, fill=BOTH, expand=NO)
 
-    status_bar_moisture: Label = Label(status_bar, text=f'{soil_moisture * 100:.2f}%', font=('Arial', 9))
+    status_bar_moisture: Label = Label(status_bar, text=f'{soil_moisture:.2f}%', font=('Arial', 9))
     status_bar_moisture.pack(side=RIGHT, fill=X)
 
 
@@ -54,9 +54,10 @@ def show_select_screen(root: Tk) -> None:
     for p in plants:
         if p.category not in categories:
             Label(root, text=p.category, font=('Arial', 20), bg='white').pack(side=TOP, fill=X)
-            sb: Scrollbar = Scrollbar(root, orient=HORIZONTAL)
+            sb: Scrollbar = Scrollbar(root, orient=HORIZONTAL, bg='black', activebackground='black',
+                                      troughcolor='white')
             sb.pack(side=TOP, fill=X)
-            canvas: Canvas = Canvas(root, xscrollcommand=sb.set)
+            canvas: Canvas = Canvas(root, xscrollcommand=sb.set, bg='white')
             canvas.pack(side=TOP, fill=X)
             sb.config(command=canvas.xview)
 
@@ -67,12 +68,12 @@ def show_select_screen(root: Tk) -> None:
             categories[p.category] = frame
 
         # Open image and resize it using PIL before converting to PhotoImage
-        original_img: ImageFile = Image.open("images/apple.gif")
+        original_img: ImageFile = Image.open(p.image)
         resized_img: ImageFile = original_img.resize((original_img.width // 3, original_img.height // 3))
         photo_image: PhotoImage = ImageTk.PhotoImage(resized_img)
 
         # Store reference with unique key
-        image_key: str = f"plant_{p.id}"
+        image_key: str = f"plant_{p.name}"
         image_references[image_key] = photo_image
 
         # Create button with plant selection callback
@@ -86,7 +87,7 @@ def show_select_screen(root: Tk) -> None:
     for category, frame in categories.items():
         frame.update_idletasks()
         canvas = frame.master
-        canvas.config(scrollregion=canvas.bbox("all"))
+        canvas.config(scrollregion=canvas.bbox("all"), height=frame.winfo_reqheight())
 
 
 def select_plant(root: Tk, selected_plant: Plant) -> None:
@@ -132,7 +133,7 @@ def show_plant_info(root: Tk) -> None:
     panel: Label = Label(main_frame, image=photo, bg='white')
     panel.pack(side=TOP)
 
-    label: Label = Label(main_frame, text=f'{soil_moisture * 100:.2f}%', font=('Arial', 20), fg=text_color, bg='white')
+    label: Label = Label(main_frame, text=f'{soil_moisture:.2f}%', font=('Arial', 20), fg=text_color, bg='white')
     label.pack(side=TOP, pady=10)
 
     # Add a button to go back to plant selection
@@ -159,7 +160,10 @@ def read_plant_data() -> None:
     plants = []  # Clear the list before adding new plants
     for k, v in data.items():
         for p in v:
-            plants.append(Plant(p['id'], p['name'], p['min'], p['max'], k))
+            # Use the default image if none is provided
+            if not p.get('image'):
+                p['image'] = 'images/no_image.png'
+            plants.append(Plant(p['name'], p['image'], p['min'], p['max'], k))
 
 
 def main() -> None:
